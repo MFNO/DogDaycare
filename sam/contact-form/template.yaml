@@ -1,0 +1,80 @@
+# Deploy from this folder:
+#   npm install && sam build && sam deploy --guided
+#
+# SES: verify SOURCE_EMAIL (and in SES sandbox, verify DESTINATION_EMAIL too)
+# in the same region you deploy this stack. Same region as Lambda is used for SES.
+
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: HTTP API -> Lambda -> SES contact form
+
+Parameters:
+  DestinationEmail:
+    Type: String
+    Description: Inbox that receives submissions (verify in SES if account is in sandbox)
+  SourceEmail:
+    Type: String
+    Description: SES-verified From address (or domain identity)
+  AllowedOrigin:
+    Type: String
+    Default: "*"
+    Description: Browser origin for CORS (use your site URL in production)
+
+Globals:
+  Function:
+    Timeout: 10
+    MemorySize: 256
+    Runtime: nodejs24.x
+    Architectures:
+      - arm64
+
+Resources:
+  HttpApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      CorsConfiguration:
+        AllowMethods:
+          - POST
+          - OPTIONS
+        AllowHeaders:
+          - content-type
+        AllowOrigins:
+          - !Ref AllowedOrigin
+
+  ContactFormFunction:
+    Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: es2022
+        # ESM bundles inject a require shim; bundled @aws-sdk then does dynamic require("buffer") and fails at cold start.
+        Format: cjs
+        EntryPoints:
+          - src/handler.mjs
+    Properties:
+      CodeUri: ./
+      Handler: src/handler.handler
+      Environment:
+        Variables:
+          DESTINATION_EMAIL: !Ref DestinationEmail
+          SOURCE_EMAIL: !Ref SourceEmail
+          ALLOWED_ORIGIN: !Ref AllowedOrigin
+      Policies:
+        - Statement:
+            Effect: Allow
+            Action:
+              - ses:SendEmail
+            Resource: "*"
+      Events:
+        Submit:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref HttpApi
+            Path: /submit
+            Method: POST
+
+Outputs:
+  ApiEndpoint:
+    Description: POST JSON { name, email, message } to /submit
+    Value: !Sub "${HttpApi.ApiEndpoint}/submit"

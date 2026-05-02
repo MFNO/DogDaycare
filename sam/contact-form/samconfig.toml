@@ -1,0 +1,22 @@
+# Deploy uses AWS CLI profile "personal" — keep work SSO on another profile name.
+# Create it with: aws configure --profile personal
+# Verify: aws sts get-caller-identity --profile personal
+
+version = 0.1
+
+[default.global.parameters]
+stack_name = "contact-form-sam"
+region = "us-east-1"
+
+[default.build.parameters]
+cached = true
+parallel = true
+
+[default.deploy.parameters]
+profile = "personal"
+capabilities = "CAPABILITY_IAM"
+confirm_changeset = true
+resolve_s3 = true
+parameter_overrides = "DestinationEmail=\"njvteach26@yahoo.com\" SourceEmail=\"info@nancysbarkandrecreation.com\" AllowedOrigin=\"https://nancysbarkandrecreation.com\""
+s3_prefix = "contact-form-sam"
+image_repositories = []

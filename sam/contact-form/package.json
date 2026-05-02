@@ -1,0 +1,9 @@
+{
+  "name": "contact-form-sam",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@aws-sdk/client-ses": "^3.699.0",
+    "esbuild": "^0.24.0"
+  }
+}
