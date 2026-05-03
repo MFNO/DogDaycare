@@ -5,8 +5,13 @@ export const site = {
 
   heroCtaLabel: "Book a Stay",
 
-  aboutText:
-    "We are a cozy, family-run daycare where dogs socialize in supervised groups, nap in quiet spaces, and go home tired and happy. Our team loves pups like our own.",
+  aboutText: `Hi, I'm Nancy, a reliable and caring dog sitter who treats every pup like part of the family. I've been married to my husband for 17 years, and we have two children in middle and high school, so our home is full of energy, responsibility, and lots of love.
+
+I'm also a proud dog mom to three poodle mixes—Brinkley, Luna, and Lizzie—so I understand firsthand how important it is to find someone you trust with your pets. Whether your dog enjoys playtime or simply relaxing with company, I make sure they feel safe, comfortable, and well cared for.
+
+Before focusing on dog care full-time, I was a teacher and also worked in companion care with the elderly. Those experiences taught me patience, attentiveness, and the importance of creating a calm, dependable environment—qualities I bring to every dog I care for.
+
+As a stay-at-home dog mom, I have the flexibility and time to give your pet the attention they deserve. You can count on regular updates, clear communication, and lots of love while you're away.`,
 
   hours: ["Monday - Sunday: 24/7"],
 
@@ -51,6 +56,7 @@ export const site = {
   contactForm: {
     nameLabel: "Your name",
     emailLabel: "Email",
+    phoneLabel: "Phone",
     messageLabel: "Message",
     messagePlaceholder:
       "Dog’s name, dates or times you need, and anything else we should know.",

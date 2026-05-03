@@ -113,6 +113,7 @@ export default function ContactForm() {
                 body: JSON.stringify({
                   name: values.name.trim(),
                   email: values.email.trim(),
+                  phone: values.phone.trim(),
                   message: values.message.trim(),
                 }),
               });
@@ -166,6 +167,30 @@ export default function ContactForm() {
             ]}
           >
             <Input size="large" type="email" autoComplete="email" />
+          </Form.Item>
+
+          <Form.Item
+            label={site.contactForm.phoneLabel}
+            name="phone"
+            rules={[
+              { required: true, message: "Please enter your phone number." },
+              { max: 40, message: "Phone number is too long." },
+              {
+                validator: (_, value) => {
+                  const digits = String(value ?? "").replace(/\D/g, "");
+                  if (digits.length < 10) {
+                    return Promise.reject(
+                      new Error(
+                        "Enter a valid phone number with area code (10 digits).",
+                      ),
+                    );
+                  }
+                  return Promise.resolve();
+                },
+              },
+            ]}
+          >
+            <Input size="large" type="tel" autoComplete="tel" />
           </Form.Item>
 
           <Form.Item

@@ -79,7 +79,7 @@ Configure the bucket for static website hosting or front it with CloudFront as y
 
 ## SAM contact API (`sam/contact-form/`)
 
-Lambda runtime **Node.js 24** (ARM), **`POST /submit`**, body **`{ name, email, message }`**. Stack parameters: **`DestinationEmail`**, **`SourceEmail`**, **`AllowedOrigin`** (CORS). Deploy from that directory:
+Lambda runtime **Node.js 24** (ARM), **`POST /submit`**, body **`{ name, email, phone, message }`**. Stack parameters: **`DestinationEmail`**, **`SourceEmail`**, **`AllowedOrigin`** (CORS). Deploy from that directory:
 
 ```bash
 cd sam/contact-form

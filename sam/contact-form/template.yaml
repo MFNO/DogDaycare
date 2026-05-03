@@ -76,5 +76,5 @@ Resources:
 
 Outputs:
   ApiEndpoint:
-    Description: POST JSON { name, email, message } to /submit
+    Description: POST JSON { name, email, phone, message } to /submit
     Value: !Sub "${HttpApi.ApiEndpoint}/submit"
