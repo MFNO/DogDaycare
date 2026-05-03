@@ -1,5 +1,9 @@
 import { Row, Col, Typography, Space, Grid, Image } from "antd";
-import { ClockCircleOutlined, EnvironmentOutlined } from "@ant-design/icons";
+import {
+  ClockCircleOutlined,
+  DollarOutlined,
+  EnvironmentOutlined,
+} from "@ant-design/icons";
 import { site } from "../config/site.js";
 import nancyImage from "../assets/nancy.png";
 
@@ -64,6 +68,17 @@ export default function About() {
               <ClockCircleOutlined /> Hours
             </Text>
             {site.hours.map((line) => (
+              <Text key={line} type="secondary" style={{ display: "block" }}>
+                {line}
+              </Text>
+            ))}
+            <Text
+              strong
+              style={{ display: "block", marginTop: 16 }}
+            >
+              <DollarOutlined /> Pricing
+            </Text>
+            {site.pricing.map((line) => (
               <Text key={line} type="secondary" style={{ display: "block" }}>
                 {line}
               </Text>

@@ -15,6 +15,12 @@ As a stay-at-home dog mom, I have the flexibility and time to give your pet the 
 
   hours: ["Monday - Sunday: 24/7"],
 
+  pricing: [
+    "$25 per day",
+    "Overnight: $40 per night",
+    "Each additional dog overnight: +$20 per night",
+  ],
+
   location: "211 Logan Crossing Drive, Davidson, NC 28036",
 
   email: "njvteach26@yahoo.com",
