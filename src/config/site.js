@@ -66,6 +66,13 @@ As a stay-at-home dog mom, I have the flexibility and time to give your pet the 
     messageLabel: "Message",
     messagePlaceholder:
       "Dog’s name, dates or times you need, and anything else we should know.",
+    /** Empty string hides the download link. */
+    contractDownloadUrl:
+      "https://nancys-bark-and-recreation.s3.us-east-1.amazonaws.com/contract/Contract.docx",
+    contractDownloadLabel: "Download contract (.docx)",
+    contractUploadLabel: "Signed contract (optional)",
+    contractUploadHint:
+      "If you upload a completed .docx, we will attach it to the message we receive.",
     submitLabel: "Send message",
     sendingLabel: "Sending…",
     successMessage:

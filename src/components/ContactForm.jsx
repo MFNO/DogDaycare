@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Typography, Grid, Button, Form, Input, Alert, Space } from "antd";
+import { Typography, Grid, Button, Form, Input, Alert, Space, Upload } from "antd";
 import { site } from "../config/site.js";
 
 const { Title, Paragraph } = Typography;
@@ -7,6 +7,7 @@ const { useBreakpoint } = Grid;
 const { TextArea } = Input;
 
 const CONTACT_API_URL = import.meta.env.VITE_CONTACT_API_URL?.trim();
+const CONTRACT_MAX_BYTES = 5 * 1024 * 1024;
 
 export default function ContactForm() {
   const screens = useBreakpoint();
@@ -15,6 +16,10 @@ export default function ContactForm() {
   const [submitting, setSubmitting] = useState(false);
   const [sent, setSent] = useState(false);
   const [submitError, setSubmitError] = useState(null);
+  const [contractFileList, setContractFileList] = useState([]);
+  const [contractAttachment, setContractAttachment] = useState(null);
+
+  const contractDownloadUrl = site.contactForm.contractDownloadUrl?.trim() ?? "";
 
   return (
     <div
@@ -63,6 +68,8 @@ export default function ContactForm() {
               onClick={() => {
                 setSent(false);
                 setSubmitError(null);
+                setContractFileList([]);
+                setContractAttachment(null);
                 form.resetFields();
               }}
               style={{ padding: 0, alignSelf: "flex-start" }}
@@ -107,15 +114,21 @@ export default function ContactForm() {
             setSubmitError(null);
             setSubmitting(true);
             try {
+              const payload = {
+                name: values.name.trim(),
+                email: values.email.trim(),
+                phone: values.phone.trim(),
+                message: values.message.trim(),
+              };
+              if (contractAttachment) {
+                payload.contractBase64 = contractAttachment.base64;
+                payload.contractFileName = contractAttachment.fileName;
+              }
+
               const res = await fetch(CONTACT_API_URL, {
                 method: "POST",
                 headers: { "content-type": "application/json" },
-                body: JSON.stringify({
-                  name: values.name.trim(),
-                  email: values.email.trim(),
-                  phone: values.phone.trim(),
-                  message: values.message.trim(),
-                }),
+                body: JSON.stringify(payload),
               });
 
               let data = {};
@@ -134,6 +147,8 @@ export default function ContactForm() {
               }
 
               form.resetFields();
+              setContractFileList([]);
+              setContractAttachment(null);
               setSent(true);
             } catch (err) {
               setSubmitError(
@@ -206,6 +221,68 @@ export default function ContactForm() {
               placeholder={site.contactForm.messagePlaceholder}
               style={{ resize: "vertical" }}
             />
+          </Form.Item>
+
+          {contractDownloadUrl ? (
+            <Paragraph style={{ marginBottom: 8 }}>
+              <a
+                href={contractDownloadUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {site.contactForm.contractDownloadLabel}
+              </a>
+            </Paragraph>
+          ) : null}
+
+          <Form.Item
+            label={site.contactForm.contractUploadLabel}
+            extra={site.contactForm.contractUploadHint}
+          >
+            <Upload
+              accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+              maxCount={1}
+              fileList={contractFileList}
+              beforeUpload={(file) => {
+                if (!file.name.toLowerCase().endsWith(".docx")) {
+                  setSubmitError("Please choose a .docx file.");
+                  return Upload.LIST_IGNORE;
+                }
+                if (file.size > CONTRACT_MAX_BYTES) {
+                  setSubmitError("Contract file must be 5 MB or smaller.");
+                  return Upload.LIST_IGNORE;
+                }
+                setSubmitError(null);
+                const reader = new FileReader();
+                reader.onload = () => {
+                  const dataUrl = reader.result;
+                  if (typeof dataUrl !== "string") return;
+                  const base64 = dataUrl.includes(",")
+                    ? dataUrl.slice(dataUrl.indexOf(",") + 1)
+                    : dataUrl;
+                  setContractAttachment({
+                    base64,
+                    fileName: file.name,
+                  });
+                  setContractFileList([
+                    {
+                      uid: "-contract",
+                      name: file.name,
+                      status: "done",
+                    },
+                  ]);
+                };
+                reader.readAsDataURL(file);
+                return false;
+              }}
+              onRemove={() => {
+                setContractFileList([]);
+                setContractAttachment(null);
+                return true;
+              }}
+            >
+              <Button size="large">Choose file</Button>
+            </Upload>
           </Form.Item>
 
           <Form.Item style={{ marginBottom: 16 }}>
