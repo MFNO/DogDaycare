@@ -16,8 +16,9 @@ As a stay-at-home dog mom, I have the flexibility and time to give your pet the 
   hours: ["Monday - Sunday: 24/7"],
 
   pricing: [
-    "$25 per day",
-    "Overnight: $40 per night",
+    "$15 per half day (4 hours or less)",
+    "$25 per day (up to 8 hours)",
+    "Overnight: $40 per night (drop off after 12pm and pick up before 12pm or addtional monies may be requested)",
     "Each additional dog overnight: +$20 per night",
   ],
 
