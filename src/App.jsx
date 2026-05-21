@@ -4,6 +4,7 @@ import Hero from "./components/Hero.jsx";
 import About from "./components/About.jsx";
 import Services from "./components/Services.jsx";
 import Gallery from "./components/Gallery.jsx";
+import Reviews from "./components/Reviews.jsx";
 import SiteFooter from "./components/SiteFooter.jsx";
 import ContactForm from "./components/ContactForm.jsx";
 
@@ -25,6 +26,9 @@ export default function App() {
         </section>
         <section id="gallery" aria-label="Gallery">
           <Gallery />
+        </section>
+        <section id="reviews" aria-label="Reviews">
+          <Reviews />
         </section>
         <section id="contact" aria-label="Contact and booking">
           <ContactForm />

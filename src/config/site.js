@@ -57,10 +57,24 @@ As a stay-at-home dog mom, I have the flexibility and time to give your pet the 
     },
   ],
 
+  reviews: [
+    {
+      quote:
+        'When I tell my dogs they are going to "camp Nancy\'s" they jump into the car with glee!  Nancy is my favorite choice for doggie daycare or overnight pet sitting. She treats my pups as if they were her own, in a loving and safe environment.  Her home is the next best thing to yours…you and your pets will not be disappointed!',
+      author: "Melissa M",
+    },
+    {
+      quote:
+        "We absolutely love Nancy! Our pups are so spoiled and loved every time they stay — it's truly like going to grandma's house. I think they like her more than us! We never have to worry because we know they're getting the best care, attention, and cuddles. You can tell how much she genuinely loves animals, and our pets are always so happy and comfortable there. We're beyond grateful to have found someone we trust so much!",
+      author: "Christie H",
+    },
+  ],
+
   sections: {
     about: "About me",
     services: "Services",
     gallery: "Gallery",
+    reviews: "Reviews",
     contact: "Contact & booking",
   },
 
@@ -95,6 +109,7 @@ As a stay-at-home dog mom, I have the flexibility and time to give your pet the 
     { key: "about", label: "About" },
     { key: "services", label: "Services" },
     { key: "gallery", label: "Gallery" },
+    { key: "reviews", label: "Reviews" },
     { key: "contact", label: "Contact" },
   ],
 };

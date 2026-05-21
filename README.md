@@ -41,6 +41,7 @@ Sections are composed in **`src/App.jsx`**:
 | About | **`About.jsx`** | Intro copy from site config. |
 | Services | **`Services.jsx`** | Service cards from site config. |
 | Gallery | **`Gallery.jsx`** | Carousel of images under **`src/assets/gallery/`** (loaded via Vite **`import.meta.glob`**). |
+| Reviews | **`Reviews.jsx`** | Customer testimonials from **`site.reviews`** in **`src/config/site.js`**. |
 | Contact | **`ContactForm.jsx`** | Primary CTA opens **`site.intakeFormUrl`** (Google Form) in a new tab. |
 
 **Header / footer:** **`SiteHeader.jsx`** (sticky nav), **`SiteFooter.jsx`** (business name and copyright; optional phone, email, and social columns exist in code but are **commented out** — uncomment and extend **`src/config/site.js`** if you enable them).
