@@ -29,7 +29,7 @@ As a stay-at-home dog mom, I have the flexibility and time to give your pet the 
     "Under 30 lbs",
   ],
 
-  location: "211 Logan Crossing Drive, Davidson, NC 28036",
+  location: "Davidson/Mooresville border",
 
   email: "njvteach26@yahoo.com",
 
