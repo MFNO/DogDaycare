@@ -3,6 +3,7 @@ import {
   ClockCircleOutlined,
   DollarOutlined,
   EnvironmentOutlined,
+  HeartOutlined,
 } from "@ant-design/icons";
 import { site } from "../config/site.js";
 import nancyImage from "../assets/nancy.png";
@@ -72,10 +73,7 @@ export default function About() {
                 {line}
               </Text>
             ))}
-            <Text
-              strong
-              style={{ display: "block", marginTop: 16 }}
-            >
+            <Text strong style={{ display: "block", marginTop: 16 }}>
               <DollarOutlined /> Pricing
             </Text>
             {site.pricing.map((line) => (
@@ -96,6 +94,17 @@ export default function About() {
             >
               {site.location}
             </Text>
+            <Text strong style={{ display: "block", marginTop: 16 }}>
+              <HeartOutlined /> Type of dog
+            </Text>
+            <Text type="secondary" style={{ display: "block" }}>
+              We only take:
+            </Text>
+            {site.dogRequirements.map((line) => (
+              <Text key={line} type="secondary" style={{ display: "block" }}>
+                {line}
+              </Text>
+            ))}
           </Space>
         </Col>
       </Row>

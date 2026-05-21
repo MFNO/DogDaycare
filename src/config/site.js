@@ -22,6 +22,13 @@ As a stay-at-home dog mom, I have the flexibility and time to give your pet the 
     "Each additional dog overnight: +$20 per night",
   ],
 
+  dogRequirements: [
+    "Friendly",
+    "Non-shedding",
+    "Hypoallergenic",
+    "Under 30 lbs",
+  ],
+
   location: "211 Logan Crossing Drive, Davidson, NC 28036",
 
   email: "njvteach26@yahoo.com",
