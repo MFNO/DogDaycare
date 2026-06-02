@@ -18,7 +18,7 @@ As a stay-at-home dog mom, I have the flexibility and time to give your pet the 
   pricing: [
     "$15 per half day (4 hours or less)",
     "$25 per day (up to 8 hours)",
-    "Overnight: $40 per night (drop off after 12pm and pick up before 12pm or addtional monies may be requested)",
+    "Overnight: $40 per night (drop off after 12pm and pick up before 12pm or additional monies may be requested)",
     "Each additional dog overnight: +$20 per night",
   ],
 
@@ -27,6 +27,9 @@ As a stay-at-home dog mom, I have the flexibility and time to give your pet the 
     "Non-shedding",
     "Hypoallergenic",
     "Under 30 lbs",
+    "Must be at least 9 months old",
+    "Must be crated at night",
+    "Must be spayed/neutered",
   ],
 
   location: "Davidson/Mooresville border",
@@ -54,6 +57,11 @@ As a stay-at-home dog mom, I have the flexibility and time to give your pet the 
       title: "Boarding",
       description:
         "Overnight care with comfortable sleeping areas and the same loving staff.",
+    },
+    {
+      title: "A la carte baths & walks (this summer only!)",
+      description:
+        "Baths and walks done by my daughter Madison! $10 per bath and $10 per half-hour walk.",
     },
   ],
 
